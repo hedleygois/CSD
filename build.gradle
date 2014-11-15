@@ -1,13 +1,26 @@
 apply plugin: 'java'
-//apply plugin: 'netbeans'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'application'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.eriwen:gradle-cobertura-plugin:1.1.1'
+    }
+}
+
+
 
 configurations {
     cucumberRuntime {
         extendsFrom testRuntime
     }
 }
+
+mainClassName = "Main"
 
 task cucumber() {
     dependsOn assemble, compileTestJava
@@ -23,7 +36,6 @@ task cucumber() {
 dependencies {
     testCompile 'info.cukes:cucumber-java:1.2.0'
     testCompile 'info.cukes:cucumber-junit:1.2.0'
-
     testCompile 'junit:junit:4.11'
 }
 
