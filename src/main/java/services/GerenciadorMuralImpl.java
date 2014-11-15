@@ -1,6 +1,7 @@
-package models;
+package services;
 
 import exceptions.TarefaSemNomeException;
+import models.Tarefa;
 
 public class GerenciadorMuralImpl implements GerenciadorMural {
 
