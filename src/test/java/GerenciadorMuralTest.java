@@ -1,8 +1,8 @@
 import static org.junit.Assert.*;
 
 import exceptions.TarefaSemNomeException;
-import models.GerenciadorMural;
-import models.GerenciadorMuralImpl;
+import services.GerenciadorMural;
+import services.GerenciadorMuralImpl;
 import models.Tarefa;
 import org.junit.Before;
 import org.junit.Test;
