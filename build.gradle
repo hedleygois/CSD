@@ -1,4 +1,7 @@
 apply plugin: 'java'
+//apply plugin: 'netbeans'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 configurations {
     cucumberRuntime {
