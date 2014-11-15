@@ -1,4 +1,6 @@
 import static org.junit.Assert.*;
+
+import exceptions.TarefaSemNomeException;
 import models.GerenciadorMural;
 import models.GerenciadorMuralImpl;
 import models.Tarefa;
@@ -15,9 +17,14 @@ public class GerenciadorMuralTest {
     }
 
     @Test
-    public void deveCriarUmaTarefaComONomeEspecificado() {
+    public void deveCriarUmaTarefaComONomeEspecificado() throws TarefaSemNomeException {
         Tarefa tarefa = mural.criarTarefa("Teste");
         assertEquals("Teste", tarefa.getNome());
+    }
+
+    @Test(expected = TarefaSemNomeException.class)
+    public void naoDeveCriarUmaTarefaComNomeVazio() throws TarefaSemNomeException {
+       mural.criarTarefa("");
     }
 
 }
