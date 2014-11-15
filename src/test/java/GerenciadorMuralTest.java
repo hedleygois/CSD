@@ -1,43 +1,48 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 import exceptions.TarefaSemNomeException;
 import services.GerenciadorMural;
 import services.GerenciadorMuralImpl;
 import models.Tarefa;
+import models.Mural;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class GerenciadorMuralTest {
 
-    private GerenciadorMural mural;
-    
-    @Test
-    public deveMoverTarefa() {
-    	GerenciadorMuralImpl gerenciador = new GerenciadorMural();
-    	Mural muralTarefasConcluidas = new Mural("Concluido");
-    	Mural muralTafefasARealizar = new Mural("A realizar");
-    	Tarefa tarefa = new Tarefa("Primeira tarefa");
-    	gerenciador.adicionarMural(muralConcluido);
-    	gerenciador.adicionarMural(muralTafefasARealizar);
-    	
-    	gerenciador.adicionarTarefa();
-    	
-    }
+    private GerenciadorMural gerenciador;
 
     @Before
     public void setUp() {
-        mural = new GerenciadorMuralImpl();
+    	gerenciador = new GerenciadorMuralImpl();
     }
 
     @Test
     public void deveCriarUmaTarefaComONomeEspecificado() throws TarefaSemNomeException {
-        Tarefa tarefa = mural.criarTarefa("Teste");
+        Tarefa tarefa = gerenciador.criarTarefa("Teste");
         assertEquals("Teste", tarefa.getNome());
     }
 
     @Test(expected = TarefaSemNomeException.class)
     public void naoDeveCriarUmaTarefaComNomeVazio() throws TarefaSemNomeException {
-       mural.criarTarefa("");
+    	gerenciador.criarTarefa("");
+    }
+    
+    @Test
+    public void deveMoverTarefa() {
+    	Mural muralTarefasConcluidas = new Mural("concluido");
+    	Mural muralTafefasARealizar = new Mural("realizar");
+    	List<Mural> murais = new ArrayList<>();
+    	murais.add(muralTarefasConcluidas);
+    	murais.add(muralTafefasARealizar);
+    	gerenciador.setMurais(murais);
+    	
+    	Tarefa tarefa = gerenciador.criarTarefa("Primeira tarefa");
+    	muralTafefasARealizar.addTarefa(tarefa);
     }
 
 }
