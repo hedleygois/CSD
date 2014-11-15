@@ -2,6 +2,6 @@ package models;
 
 public interface GerenciadorMural {
 
-    Tarefa criarTarefa();
+    Tarefa criarTarefa(String nome);
 
 }
